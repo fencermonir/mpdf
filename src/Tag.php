@@ -232,9 +232,8 @@ class Tag
 				/* -- TABLES -- */
 				// Output it to buffers
 				if ($this->mpdf->tableLevel) {
-					if (!isset($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'])) {
-						$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] = $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'];
-					} elseif ($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] < $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s']) {
+					if (!isset($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs']) ||
+						($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] < $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'])) {
 						$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] = $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'];
 					}
 					$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'] = 0; // reset
@@ -1561,9 +1560,8 @@ class Tag
 					}
 
 					$this->mpdf->_saveCellTextBuffer($blockpre . $inlinepre . "\n" . $inlinepost . $blockpost);
-					if (!isset($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'])) {
-						$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] = $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'];
-					} elseif ($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] < $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s']) {
+					if (!isset($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs']) ||
+						($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] < $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'])) {
 						$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] = $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'];
 					}
 					$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'] = 0; // reset
@@ -1731,9 +1729,8 @@ class Tag
 					// If already something on the line
 					if ($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'] > 0 && !$this->mpdf->nestedtablejustfinished) {
 						$this->mpdf->_saveCellTextBuffer("\n");
-						if (!isset($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'])) {
-							$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] = $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'];
-						} elseif ($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] < $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s']) {
+						if (!isset($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs']) ||
+							($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] < $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'])) {
 							$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] = $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'];
 						}
 						$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'] = 0; // reset
@@ -1926,9 +1923,7 @@ class Tag
 								0,
 								$pagesel
 							);
-						} elseif (strtoupper($p['PAGE-BREAK-BEFORE']) === 'ALWAYS') {
-							$this->mpdf->AddPage($this->mpdf->CurOrientation, '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, $pagesel);
-						} elseif ($this->mpdf->page_box['current'] != $pagesel) {
+						} elseif (strtoupper($p['PAGE-BREAK-BEFORE']) === 'ALWAYS' || $this->mpdf->page_box['current'] != $pagesel) {
 							$this->mpdf->AddPage($this->mpdf->CurOrientation, '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, $pagesel);
 						} // *CSS-PAGE*
 					} /* -- CSS-PAGE -- */
@@ -2656,9 +2651,8 @@ class Tag
 				// Output it to buffers
 				if ($this->mpdf->tableLevel) {
 					if ($this->mpdf->cell) {
-						if (!isset($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'])) {
-							$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] = $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'];
-						} elseif ($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] < $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s']) {
+						if (!isset($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs']) ||
+							($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] < $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'])) {
 							$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] = $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'];
 						}
 						$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'] = 0; // reset
@@ -6260,9 +6254,8 @@ class Tag
 				$e = "\xbb\xa4\xactype=nestedtable,objattr=" . serialize($objattr) . "\xbb\xa4\xac";
 				$this->mpdf->_saveCellTextBuffer($e);
 				$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'] += $tl;
-				if (!isset($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'])) {
-					$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] = $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'];
-				} elseif ($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] < $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s']) {
+				if (!isset($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs']) ||
+					($this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] < $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'])) {
 					$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['maxs'] = $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'];
 				}
 				$this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['s'] = 0; // reset
