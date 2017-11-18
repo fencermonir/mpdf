@@ -1156,7 +1156,7 @@ class Tag
 						&& $this->mpdf->cell[$this->mpdf->row][$this->mpdf->col]['direction'] === 'rtl') {
 					$currdir = 'rtl';
 				}
-				if (isset($attr['DIR']) and $attr['DIR'] != '') {
+				if (isset($attr['DIR']) && $attr['DIR'] != '') {
 					$currdir = strtolower($attr['DIR']);
 				}
 				if (isset($properties['DIRECTION'])) {
@@ -1166,20 +1166,20 @@ class Tag
 				// mPDF 6 bidi
 				// cf. http://www.w3.org/TR/css3-writing-modes/#unicode-bidi
 				if ($tag === 'BDO') {
-					if (isset($attr['DIR']) and strtolower($attr['DIR']) === 'rtl') {
+					if (isset($attr['DIR']) && strtolower($attr['DIR']) === 'rtl') {
 						$bdf = 0x202E;
 						$popd = 'RLOPDF';
 					} // U+202E RLO
-					elseif (isset($attr['DIR']) and strtolower($attr['DIR']) === 'ltr') {
+					elseif (isset($attr['DIR']) && strtolower($attr['DIR']) === 'ltr') {
 						$bdf = 0x202D;
 						$popd = 'LROPDF';
 					} // U+202D LRO
 				} elseif ($tag === 'BDI') {
-					if (isset($attr['DIR']) and strtolower($attr['DIR']) === 'rtl') {
+					if (isset($attr['DIR']) && strtolower($attr['DIR']) === 'rtl') {
 						$bdf = 0x2067;
 						$popd = 'RLIPDI';
 					} // U+2067 RLI
-					elseif (isset($attr['DIR']) and strtolower($attr['DIR']) === 'ltr') {
+					elseif (isset($attr['DIR']) && strtolower($attr['DIR']) === 'ltr') {
 						$bdf = 0x2066;
 						$popd = 'LRIPDI';
 					} // U+2066 LRI
@@ -1229,11 +1229,11 @@ class Tag
 					$bdf = 0x2068;
 					$popd = 'FSIPDI'; // U+2068 FSI
 				} else {
-					if (isset($attr['DIR']) and strtolower($attr['DIR']) === 'rtl') {
+					if (isset($attr['DIR']) && strtolower($attr['DIR']) === 'rtl') {
 						$bdf = 0x202B;
 						$popd = 'RLEPDF';
 					} // U+202B RLE
-					elseif (isset($attr['DIR']) and strtolower($attr['DIR']) === 'ltr') {
+					elseif (isset($attr['DIR']) && strtolower($attr['DIR']) === 'ltr') {
 						$bdf = 0x202A;
 						$popd = 'LREPDF';
 					} // U+202A LRE
@@ -1263,7 +1263,7 @@ class Tag
 
 
 			case 'A':
-				if (isset($attr['NAME']) and $attr['NAME'] != '') {
+				if (isset($attr['NAME']) && $attr['NAME'] != '') {
 					$e = '';
 					/* -- BOOKMARKS -- */
 					if ($this->mpdf->anchor2Bookmark) {
@@ -1547,7 +1547,7 @@ class Tag
 				$objattr['file'] = $srcpath;
 
 				// Default width and height calculation if needed
-				if ($w == 0 and $h == 0) {
+				if ($w == 0 && $h == 0) {
 					// SVG units are pixels
 					$w = $this->mpdf->FontSize / (10 / Mpdf::SCALE) * abs($info['w']) / Mpdf::SCALE;
 					$h = $this->mpdf->FontSize / (10 / Mpdf::SCALE) * abs($info['h']) / Mpdf::SCALE;
@@ -2605,7 +2605,7 @@ class Tag
 				} else {
 					$currdir = 'ltr';
 				}
-				if (isset($attr['DIR']) and $attr['DIR'] != '') {
+				if (isset($attr['DIR']) && $attr['DIR'] != '') {
 					$currdir = strtolower($attr['DIR']);
 				}
 				if (isset($properties['DIRECTION'])) {
@@ -3452,7 +3452,7 @@ class Tag
 							}
 							$objattr['file'] = $srcpath;
 							//Default width and height calculation if needed
-							if ($w == 0 and $h == 0) {
+							if ($w == 0 && $h == 0) {
 								/* -- IMAGES-WMF -- */
 								if ($info['type'] === 'wmf') {
 									// WMF units are twips (1/20pt)
@@ -3593,11 +3593,11 @@ class Tag
 						} else {
 							$width = (20 * $spacesize) + $xw;
 						} // Default width in chars
-						if (isset($attr['SIZE']) and ctype_digit($attr['SIZE'])) {
+						if (isset($attr['SIZE']) && ctype_digit($attr['SIZE'])) {
 							$width = ($attr['SIZE'] * $spacesize) + $xw;
 						}
 						$height = $this->mpdf->FontSize + $xh;
-						if (isset($attr['MAXLENGTH']) and ctype_digit($attr['MAXLENGTH'])) {
+						if (isset($attr['MAXLENGTH']) && ctype_digit($attr['MAXLENGTH'])) {
 							$objattr['maxlength'] = $attr['MAXLENGTH'];
 						}
 						if ($this->mpdf->useActiveForms) {
@@ -3946,7 +3946,7 @@ class Tag
 
 					$objattr['file'] = $srcpath;
 					//Default width and height calculation if needed
-					if ($w == 0 and $h == 0) {
+					if ($w == 0 && $h == 0) {
 						/* -- IMAGES-WMF -- */
 						if ($info['type'] === 'wmf') {
 							// WMF units are twips (1/20pt)
@@ -5214,7 +5214,7 @@ class Tag
 
 				// mPDF 6
 				$c['direction'] = $table['direction'];
-				if (isset($attr['DIR']) and $attr['DIR'] != '') {
+				if (isset($attr['DIR']) && $attr['DIR'] != '') {
 					$c['direction'] = strtolower($attr['DIR']);
 				}
 				if (isset($properties['DIRECTION'])) {
@@ -5419,7 +5419,7 @@ class Tag
 			$this->mpdf->lastoptionaltag = '';
 		}
 
-		if ($tag === 'TTS' or $tag === 'TTA' or $tag === 'TTZ') {
+		if ($tag === 'TTS' || $tag === 'TTA' || $tag === 'TTZ') {
 			if ($this->mpdf->InlineProperties[$tag]) {
 				$this->mpdf->restoreInlineProperties($this->mpdf->InlineProperties[$tag]);
 			}
@@ -6042,7 +6042,7 @@ class Tag
 			$this->mpdf->SetStyle('B', false);
 		}
 
-		if (($tag === 'TH' or $tag === 'TD') && $this->mpdf->tableLevel) {
+		if (($tag === 'TH' || $tag === 'TD') && $this->mpdf->tableLevel) {
 			$this->mpdf->lastoptionaltag = 'TR';
 			unset($this->cssManager->tablecascadeCSS[$this->cssManager->tbCSSlvl]);
 			$this->cssManager->tbCSSlvl--;
