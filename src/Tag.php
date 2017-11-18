@@ -1574,7 +1574,7 @@ class Tag
 							$this->mpdf->textbuffer[count($this->mpdf->textbuffer) - 1][0]
 						);
 						if (!empty($this->mpdf->textbuffer[count($this->mpdf->textbuffer) - 1][18])) {
-							$this->otl->trimOTLdata($this->mpdf->textbuffer[count($this->mpdf->textbuffer) - 1][18], false, true);
+							$this->otl->trimOTLdata($this->mpdf->textbuffer[count($this->mpdf->textbuffer) - 1][18], false);
 						} // *OTL*
 					}
 					$this->mpdf->_saveTextBuffer($blockpre . $inlinepre . "\n" . $inlinepost . $blockpost);
@@ -5683,7 +5683,7 @@ class Tag
 						);
 						/* -- OTL -- */
 						if (!empty($this->mpdf->CurrentFont['useOTL'])) {
-							$this->otl->trimOTLdata($this->mpdf->textbuffer[count($this->mpdf->textbuffer) - 1][18], false, true); // mPDF 6  ZZZ99K
+							$this->otl->trimOTLdata($this->mpdf->textbuffer[count($this->mpdf->textbuffer) - 1][18], false); // mPDF 6  ZZZ99K
 						}
 						/* -- END OTL -- */
 					}
@@ -5909,11 +5909,11 @@ class Tag
 				$this->mpdf->_preForcedPagebreak($pagebreaktype);
 
 				if ($page_break_after === 'RIGHT') {
-					$this->mpdf->AddPage($this->mpdf->CurOrientation, 'NEXT-ODD', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0);
+					$this->mpdf->AddPage($this->mpdf->CurOrientation, 'NEXT-ODD');
 				} elseif ($page_break_after === 'LEFT') {
-					$this->mpdf->AddPage($this->mpdf->CurOrientation, 'NEXT-EVEN', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0);
+					$this->mpdf->AddPage($this->mpdf->CurOrientation, 'NEXT-EVEN');
 				} else {
-					$this->mpdf->AddPage($this->mpdf->CurOrientation, '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0);
+					$this->mpdf->AddPage($this->mpdf->CurOrientation);
 				}
 
 				// mPDF 6 pagebreaktype
@@ -6320,13 +6320,13 @@ class Tag
 
 					$this->mpdf->shrinkTable($this->mpdf->table[1][1], $this->mpdf->shrin_k);
 
-					$this->mpdf->_tableColumnWidth($this->mpdf->table[1][1], false); // repeat
+					$this->mpdf->_tableColumnWidth($this->mpdf->table[1][1]); // repeat
 					// Starting at $this->mpdf->innermostTableLevel
 					// Shrink table values - and redo columnWidth
 					for ($lvl = 2; $lvl <= $this->mpdf->innermostTableLevel; $lvl++) {
 						for ($nid = 1; $nid <= $this->mpdf->tbctr[$lvl]; $nid++) {
 							$this->mpdf->shrinkTable($this->mpdf->table[$lvl][$nid], $this->mpdf->shrin_k);
-							$this->mpdf->_tableColumnWidth($this->mpdf->table[$lvl][$nid], false);
+							$this->mpdf->_tableColumnWidth($this->mpdf->table[$lvl][$nid]);
 						}
 					}
 				}
@@ -6506,7 +6506,7 @@ class Tag
 					if ($this->mpdf->shrin_k <> 1) {
 						$this->mpdf->shrinkTable($this->mpdf->table[1][1], $this->mpdf->shrin_k);
 					}
-					$this->mpdf->_tableColumnWidth($this->mpdf->table[1][1], false); // repeat
+					$this->mpdf->_tableColumnWidth($this->mpdf->table[1][1]); // repeat
 					// Starting at $this->mpdf->innermostTableLevel
 					// Shrink table values - and redo columnWidth
 					for ($lvl = 2; $lvl <= $this->mpdf->innermostTableLevel; $lvl++) {
@@ -6514,7 +6514,7 @@ class Tag
 							if ($this->mpdf->shrin_k <> 1) {
 								$this->mpdf->shrinkTable($this->mpdf->table[$lvl][$nid], $this->mpdf->shrin_k);
 							}
-							$this->mpdf->_tableColumnWidth($this->mpdf->table[$lvl][$nid], false);
+							$this->mpdf->_tableColumnWidth($this->mpdf->table[$lvl][$nid]);
 						}
 					}
 					// Set table cell widths for top level table
@@ -6672,7 +6672,7 @@ class Tag
 					$this->mpdf->table_rotate = 0;
 					$this->mpdf->y = $this->mpdf->tbrot_y0;
 					$h = $this->mpdf->tbrot_w;
-					$this->mpdf->DivLn($h, $this->mpdf->blklvl, true);
+					$this->mpdf->DivLn($h, $this->mpdf->blklvl);
 
 					$this->mpdf->table_rotate = $save_tr;
 					$this->mpdf->y = $save_y;
@@ -6766,11 +6766,11 @@ class Tag
 				$this->mpdf->_preForcedPagebreak($pagebreaktype);
 
 				if ($page_break_after === 'RIGHT') {
-					$this->mpdf->AddPage($this->mpdf->CurOrientation, 'NEXT-ODD', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0);
+					$this->mpdf->AddPage($this->mpdf->CurOrientation, 'NEXT-ODD');
 				} elseif ($page_break_after === 'LEFT') {
-					$this->mpdf->AddPage($this->mpdf->CurOrientation, 'NEXT-EVEN', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0);
+					$this->mpdf->AddPage($this->mpdf->CurOrientation, 'NEXT-EVEN');
 				} else {
-					$this->mpdf->AddPage($this->mpdf->CurOrientation, '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0);
+					$this->mpdf->AddPage($this->mpdf->CurOrientation);
 				}
 
 				// mPDF 6 pagebreaktype
