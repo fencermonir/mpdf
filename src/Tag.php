@@ -616,127 +616,39 @@ class Tag
 					$type = '';
 				}
 
+				$condition = '';
 				if ($type === 'E' || $type === 'EVEN') {
-					$this->mpdf->AddPage(
-						$orient,
-						'E',
-						$resetpagenum,
-						$pagenumstyle,
-						$suppress,
-						$mgl,
-						$mgr,
-						$mgt,
-						$mgb,
-						$mgh,
-						$mgf,
-						$ohname,
-						$ehname,
-						$ofname,
-						$efname,
-						$ohvalue,
-						$ehvalue,
-						$ofvalue,
-						$efvalue,
-						$pagesel,
-						$newformat
-					);
+					$condition = 'E';
 				} elseif ($type === 'O' || $type === 'ODD') {
-					$this->mpdf->AddPage(
-						$orient,
-						'O',
-						$resetpagenum,
-						$pagenumstyle,
-						$suppress,
-						$mgl,
-						$mgr,
-						$mgt,
-						$mgb,
-						$mgh,
-						$mgf,
-						$ohname,
-						$ehname,
-						$ofname,
-						$efname,
-						$ohvalue,
-						$ehvalue,
-						$ofvalue,
-						$efvalue,
-						$pagesel,
-						$newformat
-					);
+					$condition = 'O';
 				} elseif ($type === 'NEXT-ODD') {
-					$this->mpdf->AddPage(
-						$orient,
-						'NEXT-ODD',
-						$resetpagenum,
-						$pagenumstyle,
-						$suppress,
-						$mgl,
-						$mgr,
-						$mgt,
-						$mgb,
-						$mgh,
-						$mgf,
-						$ohname,
-						$ehname,
-						$ofname,
-						$efname,
-						$ohvalue,
-						$ehvalue,
-						$ofvalue,
-						$efvalue,
-						$pagesel,
-						$newformat
-					);
+					$condition = 'NEXT-ODD';
 				} elseif ($type === 'NEXT-EVEN') {
-					$this->mpdf->AddPage(
-						$orient,
-						'NEXT-EVEN',
-						$resetpagenum,
-						$pagenumstyle,
-						$suppress,
-						$mgl,
-						$mgr,
-						$mgt,
-						$mgb,
-						$mgh,
-						$mgf,
-						$ohname,
-						$ehname,
-						$ofname,
-						$efname,
-						$ohvalue,
-						$ehvalue,
-						$ofvalue,
-						$efvalue,
-						$pagesel,
-						$newformat
-					);
-				} else {
-					$this->mpdf->AddPage(
-						$orient,
-						'',
-						$resetpagenum,
-						$pagenumstyle,
-						$suppress,
-						$mgl,
-						$mgr,
-						$mgt,
-						$mgb,
-						$mgh,
-						$mgf,
-						$ohname,
-						$ehname,
-						$ofname,
-						$efname,
-						$ohvalue,
-						$ehvalue,
-						$ofvalue,
-						$efvalue,
-						$pagesel,
-						$newformat
-					);
+					$condition = 'NEXT-EVEN';
 				}
+				$this->mpdf->AddPage(
+					$orient,
+					$condition,
+					$resetpagenum,
+					$pagenumstyle,
+					$suppress,
+					$mgl,
+					$mgr,
+					$mgt,
+					$mgb,
+					$mgh,
+					$mgf,
+					$ohname,
+					$ehname,
+					$ofname,
+					$efname,
+					$ohvalue,
+					$ehvalue,
+					$ofvalue,
+					$efvalue,
+					$pagesel,
+					$newformat
+				);
 
 				/* -- TOC -- */
 				if ($tag === 'TOCPAGEBREAK') {
